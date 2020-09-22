@@ -1,5 +1,6 @@
 package com;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +18,15 @@ public class EmployeeService {
 	public int GetEmployeeAge(@PathVariable("yob") int a)
 	{
 		//Date d=new Date();
-		return 2020 - a;
+		return LocalDate.now().getYear() - a;
 		
 	}
 	@GetMapping("/IsMinor/{yob}")
 	public boolean CheckEmployeeMinor(@PathVariable("yob") int a)
 	{
-		Date d=new Date();
+		
 	
-		int diff= 2020 - a;
+		int diff=  LocalDate.now().getYear() - a;
 		
 		if(diff>=18)
 		{
