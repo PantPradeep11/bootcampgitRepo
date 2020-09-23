@@ -1,0 +1,27 @@
+
+
+services:
+
+  cicd-pipeline-mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=world
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Pradeep@123
+    ports:
+      - 3306:3306
+
+  cicd-pipeline:
+    image: pradeeppant/bootcamp-hands-1:1.0.0
+    restart: on-failure
+    depends_on:
+      - cicd-pipeline-mysql
+    ports:
+      - 8888:8080
+    environment:
+      - DATABASE_HOST=myapp-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=Pradeep@123
+      - DATABASE_NAME=world
+      - DATABASE_PORT=3306
