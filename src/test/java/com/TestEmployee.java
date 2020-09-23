@@ -25,15 +25,12 @@ public class TestEmployee {
 	{
 		Assertions.assertEquals(empobj.GetBasic(40000),20000);
 	}
-	@Test
-	public void testPost()
-	{
-		Employee e1 = new Employee();
-		e1.Id="01";
-		e1.Name="Rojer";
-		e1.Dept="HR";
-		Assertions.assertEquals(empobj.SaveEmp(e1),"success");
-	}
+
+	/*
+	 * @Test public void testPost() { Employee e1 = new Employee(); e1.Id="01";
+	 * e1.Name="Rojer"; e1.Dept="HR";
+	 * Assertions.assertEquals(empobj.SaveEmp(e1),"success"); }
+	 */
 	@Test
 	public void testDept()
 	{

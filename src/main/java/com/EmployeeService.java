@@ -1,8 +1,6 @@
 package com;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,24 +59,16 @@ public class EmployeeService {
 		
 	}
 	
-	@PostMapping
-	public String SaveEmp(@RequestBody Employee emp)
-	{
-		Employee e1= new Employee();	
-		if(emp.Id!="0")
-		{
-			
-		e1.SetEmp(emp.Name, emp.Id, emp.Dept, emp.YearofBirth, emp.salary);	  
-		return "success";
-		}
-		else
-		{
-			return "error";
-		}
-		
-		
-	}
-	
+	/*
+	 * @PostMapping public String SaveEmp(@RequestBody Employee emp) { Employee e1=
+	 * new Employee(); if(emp.Id!="0") {
+	 * 
+	 * e1.SetEmp(emp.Name, emp.Id, emp.Dept, emp.YearofBirth, emp.salary); return
+	 * "success"; } else { return "error"; }
+	 * 
+	 * 
+	 * }
+	 */
 	
 	
 	
