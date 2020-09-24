@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  bootapp:
+  springbootapp:
     image: pradeeppant/bootcamp-hands-1:1.0.0
     ports:
       - '8888:8080'
