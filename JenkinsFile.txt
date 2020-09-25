@@ -1,0 +1,42 @@
+node {
+    def docker=tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+    def dockerCMD = "$docker/bin/docker"
+
+  stage('git checkout') {
+    git credentialsId: 'Pantpradeep11',
+    url: 'https://github.com/PantPradeep11/bootcampgitrepo.git'
+
+  }
+  stage('maven package') {
+    def mhome = tool name: 'maven-3',
+    type: 'maven'
+    def mcmd = "${mhome}/bin/mvn"
+   sh "${mcmd} clean package"
+
+  }
+
+
+    stage('Build docker image'){
+        sh "${dockerCMD} build -t pradeeppant/bootcampday4:3.1.0 ."
+    }
+
+     stage('Push docker image'){
+      withCredentials([string(credentialsId: 'dockertest', variable: 'dockerday5')]) {
+           sh "${dockerCMD} login -u pradeeppant -p ${dockerday5}"
+        }
+        sh "${dockerCMD} push pradeeppant/bootcampday4:3.1.0"
+    }
+
+    stage('Run docker image'){
+       sh 'docker stop pradeeppant/bootcampday4:3.1.0 || true && docker rm pradeeppant/bootcampday4:3.1.0 || true'
+        sh "${dockerCMD} run -p 8088:8080 -d pradeeppant/bootcampday4:3.1.0"
+    }
+   
+     //   def customImage = docker.build("pradeeppant/bootcampday4:2.0.0")
+     //   customImage.push()
+     // def dockerHome = tool name: 'docker'
+    //  def CMD = "${dockerHome}/bin/docker"
+    //  sh "${CMD} build -t pradeeppant/bootcamp-hands-2:1.0.1 ."
+
+
+}
